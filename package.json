@@ -1,9 +1,9 @@
 {
-  "name": "mass",
+  "name": "kamaji",
   "version": "0.1.0",
   "description": "Execute Big's mail-merging tool",
   "main": "index.js",
-  "repository": "https://github.com/executebig/mass",
+  "repository": "https://github.com/executebig/kamaji",
   "author": "Execute Big",
   "license": "MIT",
   "scripts": {
