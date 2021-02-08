@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/', function (req, res, next) {
-  console.log(req.user)
   res.render('index', { user: req.user })
 })
 

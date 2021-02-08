@@ -10,9 +10,6 @@ router.post('/send', (req, res) => {
 
   const email = emails[0].value
 
-  console.log(email)
-  console.log(to)
-
   nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,

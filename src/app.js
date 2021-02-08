@@ -15,6 +15,8 @@ const authModule = require('./modules/auth')
 
 const app = express()
 
+const User = require('./db/User')
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
