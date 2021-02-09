@@ -1,5 +1,8 @@
 const { DataTypes, Model } = require('sequelize')
-const sequelize = require('../db')
+const sequelize = require('../')
+
+const Email = require('./Email')
+const Template = require('./Template')
 
 class User extends Model {}
 
@@ -11,7 +14,10 @@ User.init(
     }
   },
   { sequelize, tableName: 'users' }
-).sync()
+)
+
+User.hasMany(Template)
+User.hasMany(Email)
 
 
 module.exports = User
