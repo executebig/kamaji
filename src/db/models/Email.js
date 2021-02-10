@@ -18,7 +18,7 @@ Email.init(
       type: DataTypes.STRING(254)
     }
   },
-  { sequelize, tableName: 'emails' }
+  { sequelize, underscored: true }
 )
 
 // Email.belongsTo(User)

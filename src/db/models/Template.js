@@ -1,9 +1,6 @@
 const { Sequelize, DataTypes, Model } = require('sequelize')
 const sequelize = require('../')
 
-const User = require('./User')
-const Email = require('./Email')
-
 class Template extends Model {}
 
 Template.init(
@@ -14,13 +11,16 @@ Template.init(
       primaryKey: true,
       unique: true
     },
-    template: {
+    content: {
       type: DataTypes.TEXT,
       allowNull: false
     },
-    templateEngine: DataTypes.STRING(32)
+    engine: {
+      type: DataTypes.STRING(32),
+      allowNull: false
+    }
   },
-  { sequelize, tableName: 'templates' }
+  { sequelize, underscored: true }
 )
 
 module.exports = Template

@@ -9,11 +9,11 @@ class User extends Model {}
 User.init(
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       primaryKey: true
     }
   },
-  { sequelize, tableName: 'users' }
+  { sequelize, underscored: true }
 )
 
 User.hasMany(Template)

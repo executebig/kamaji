@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mass</title>
+    <link rel='stylesheet' href='/css/style.css' />
+  </head>
+  <body>
+    <%= templates.map(e => JSON.stringify(e.get({ plain: true }))) %>
+
+    <form action="" method="post">
+      <textarea name="content" id="" cols="30" rows="10"></textarea>
+      <input name="engine" type="text">
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

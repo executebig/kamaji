@@ -14,7 +14,7 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, cb) => {
       const [user, created] = await User.findOrCreate({
-        where: { authorityId: profile.id },
+        where: { id: profile.id },
         defaults: {
           authorityId: profile.id
         }
@@ -48,8 +48,15 @@ module.exports = (app) => {
   app.get(
     '/auth/google/callback',
     passport.authenticate('google', {
-      failureRedirect: '/login',
-      successRedirect: '/'
-    })
+      failureRedirect: '/login'
+    }),
+    (req, res) => {
+      if (req.session.next) {
+        res.redirect(req.session.next)
+        req.session.next = null
+      } else {
+        res.redirect('/')
+      }
+    }
   )
 }

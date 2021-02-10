@@ -1,8 +1,30 @@
 const express = require('express')
+const Template = require('../db/models/Template')
 const router = express.Router()
 
-router.get('/', function (req, res, next) {
+const ensureAuth = require('../middleware/ensureAuth')
+
+router.get('/', (req, res, next) => {
   res.render('index', { user: req.user })
+})
+
+router.get('/templates', ensureAuth, async (req, res) => {
+  const templates = await req.user.getTemplates()
+  res.render('templates', { templates })
+})
+
+router.post('/templates', ensureAuth, async (req, res) => {
+  // TODO: Serverside engine checks
+  const { content, engine } = req.body
+
+  req.user.addTemplate(
+    await Template.create({
+      content,
+      engine
+    })
+  )
+
+  res.redirect('/templates')
 })
 
 router.get('/login', (req, res) => {

@@ -2,9 +2,9 @@ const express = require('express')
 const router = express.Router()
 const nodemailer = require('nodemailer')
 
-router.post('/send', (req, res) => {
-  if (!req.user) return res.redirect('/login')
+const ensureAuth = require('../middleware/ensureAuth')
 
+router.post('/send', ensureAuth, (req, res) => {
   const { emails } = req.user
   const { to, cc, bcc, files, subject, body } = req.body
 
