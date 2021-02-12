@@ -15,7 +15,7 @@ Email.init(
       unique: true,
     },
     to: {
-      type: DataTypes.STRING(254)
+      type: DataTypes.STRING(320)
     }
   },
   { sequelize, underscored: true }

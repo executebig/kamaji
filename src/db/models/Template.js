@@ -11,6 +11,10 @@ Template.init(
       primaryKey: true,
       unique: true
     },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     content: {
       type: DataTypes.TEXT,
       allowNull: false

@@ -10,7 +10,12 @@ User.init(
   {
     id: {
       type: DataTypes.STRING,
-      primaryKey: true
+      primaryKey: true,
+      unique: true
+    },
+    email: {
+      type: DataTypes.STRING(320),
+      allowNull: false
     }
   },
   { sequelize, underscored: true }

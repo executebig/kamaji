@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mass</title>
+    <link rel='stylesheet' href='/css/style.css' />
+
+    <style>
+      form {
+        display: flex;
+        flex-direction: column;
+        max-width: 800px;
+      }
+
+      label {
+        display: flex;
+      }
+
+      input {
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="" method="post">
+      <label>To:
+        <input name="to" type="text">
+      </label>
+
+      <label>Subject:
+        <input name="subject" type="text">
+      </label>
+
+      <textarea name="body" id="" cols="30" rows="10"></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

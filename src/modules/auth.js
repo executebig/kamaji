@@ -13,11 +13,11 @@ passport.use(
       callbackURL: `${process.env.HOST}/auth/google/callback`
     },
     async (accessToken, refreshToken, profile, cb) => {
-      const [user, created] = await User.findOrCreate({
-        where: { id: profile.id },
-        defaults: {
-          authorityId: profile.id
-        }
+      // TODO: Allow user to pick their email
+      const email = profile.emails[0].value
+      const [user, created] = await User.upsert({
+        id: profile.id,
+        email: email
       })
 
       cb(null, user)
