@@ -21,8 +21,7 @@ User.init(
   { sequelize, underscored: true }
 )
 
-User.hasMany(Template)
-User.hasMany(Email)
-
+User.hasMany(Template, { foreignKey: 'user_id' })
+User.hasMany(Email, { foreignKey: 'user_id' })
 
 module.exports = User
