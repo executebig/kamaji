@@ -9,6 +9,8 @@ const sassMiddleware = require('node-sass-middleware')
 const session = require('express-session')
 
 const indexRouter = require('./routes/index')
+const templatesRouter = require('./routes/templates')
+const sendRouter = require('./routes/send')
 
 const authModule = require('./modules/auth')
 
@@ -46,6 +48,8 @@ authModule(app)
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', indexRouter)
+app.use('/templates', templatesRouter)
+app.use('/send', sendRouter)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
