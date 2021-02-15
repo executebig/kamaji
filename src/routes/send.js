@@ -1,23 +1,30 @@
 const express = require('express')
+const nodemailer = require('nodemailer')
 const Mustache = require('mustache')
 
 const ensureAuth = require('../middleware/ensureAuth')
 
-const User = require('../db/models/User')
 const Template = require('../db/models/Template')
+const Email = require('../db/models/Email')
 
 const router = express.Router()
 
-router.get('/', ensureAuth, (req, res) => {
-  res.render('send', { templates: req.user.getTemplates() })
+router.get('/', ensureAuth, async (req, res) => {
+  res.render('send', { templates: await req.user.getTemplates() })
 })
 
-router.post('/', ensureAuth, (req, res) => {
-  // TODO: Email scheduling w/ cronjob
-  const { to, files, subject, body } = req.body
+router.post('/', ensureAuth, async (req, res, next) => {
+  let { subject, template, fields, emailKey } = req.body
 
-  req.user.email = '***REMOVED***'
+  try {
+    template = await Template.findByPk(template)
+    fields = JSON.parse(fields)
+    subject = Mustache.render(subject, fields)
+  } catch (err) {
+    next(err)
+  }
 
+  // TODO: Cache transports in memory based on user session
   const transport = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,
@@ -31,20 +38,28 @@ router.post('/', ensureAuth, (req, res) => {
     }
   })
 
-  to.split(/, ?/g).forEach((email) => {
+  fields.forEach(async ({[emailKey]: email, ...fields }) => {
+    const newEmail = await Email.create({
+      to: email,
+      fields: fields
+    })
+
+    req.user.addEmail(newEmail)
+    template.addEmail(newEmail)
+
     transport
       .sendMail({
         from: req.user.email,
         to: email,
         subject: subject,
-        html: body
+        html: Mustache.render(template.content, fields)
       })
       .then((mailRes) => {
         console.log(mailRes)
-        res.end('Message sent successfully')
       })
       .catch(console.error)
   })
+  res.end('Request successfully submitted')
 })
 
 module.exports = router

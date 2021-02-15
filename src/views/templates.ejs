@@ -43,9 +43,7 @@
       const form = document.querySelector('#form')
 
       form.addEventListener('submit', () => {
-        form.querySelector('input[name="content"]').value = JSON.stringify(
-          quill.getHtml()
-        )
+        form.querySelector('input[name="content"]').value = "" + quill.getHtml()
       })
     </script>
   </body>
