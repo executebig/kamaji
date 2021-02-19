@@ -1,5 +1,5 @@
 {
-  "name": "kamaji",
+  "name": "kamaji-server",
   "version": "0.1.0",
   "description": "Execute Big's mail-merging tool",
   "main": "index.js",
