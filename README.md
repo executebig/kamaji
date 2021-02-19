@@ -1,5 +1,5 @@
 # Kamajī
-Mail-merging service with templating, directly sent via SMTP.
+Execute Big's mail-merging service with templating, directly sent via SMTP.
 ## TODO
 - SMTP pooling & stagger sends w/ nodemailer
 - Email queueing by storing emails & executing when the server can next handle it
