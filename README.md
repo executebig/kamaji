@@ -3,7 +3,6 @@ Mail-merging service with templating, directly sent via SMTP.
 
 ## TODO
 - SMTP pooling & stagger sends w/ nodemailer
-- Redact emails & stuff in git
 - Email queueing by storing emails & executing when the server can next handle it
   - When stagger sending, take 20 i.e. from each domain (sorted)
   - Stagger sends should have customizable / previewable timestamps for when they send out
