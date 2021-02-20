@@ -5,33 +5,20 @@ const express = require('express')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
-const sassMiddleware = require('node-sass-middleware')
 const session = require('express-session')
 
 const indexRouter = require('./routes/index')
 const templatesRouter = require('./routes/templates')
 const sendRouter = require('./routes/send')
 
-const authModule = require('./modules/auth')
+const authLib = require('./libs/auth')
 
 const app = express()
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'ejs')
 
 app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
-app.use(
-  sassMiddleware({
-    src: path.join(__dirname, 'public'),
-    dest: path.join(__dirname, 'public'),
-    indentedSyntax: false, // true = .sass and false = .scss
-    sourceMap: true
-  })
-)
 app.use(
   session({
     secret: process.env.COOKIE_SECRET,
@@ -43,13 +30,13 @@ app.use(
   })
 )
 
-authModule(app)
+authLib(app)
 
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, '..', '..', 'client', 'build')))
 
 app.use('/', indexRouter)
-app.use('/templates', templatesRouter)
-app.use('/send', sendRouter)
+app.use('/api/templates', templatesRouter)
+app.use('/api/send', sendRouter)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
