@@ -8,3 +8,4 @@ Execute Big's mail-merging service with templating, directly sent via SMTP.
 - Email scheduling w/ node-cronjob
 - First email preview
 - Make api only executebig
+- .env.example
