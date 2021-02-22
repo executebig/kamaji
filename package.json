@@ -1,0 +1,33 @@
+{
+  "name": "kamaji",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/executebig/kamaji",
+  "author": "Execute Big",
+  "license": "MIT",
+  "scripts": {
+    "start": "(cd client && npm run build) && (cd server && npm run start)",
+
+    "dev": "concurrently --kill-others \"npm:dev-server\" \"npm:dev-client\"",
+    "dev-server": "cd server && npm run dev",
+    "dev-client": "cd client && npm run start",
+
+    "install": "concurrently \"npm:install-server\" \"npm:install-client\"",
+    "install-server": "cd server && npm i",
+    "install-client": "cd client && npm i"
+  },
+  "devDependencies": {
+    "concurrently": "^6.0.0",
+    "husky": "=4",
+    "lint-staged": ">=10",
+    "prettier": "^2.2.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,css,md}": "prettier --write"
+  }
+}
