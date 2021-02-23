@@ -13,7 +13,7 @@ const router = express.Router()
 
 router.get('/', ensureAuth, async (req, res) => {
   const templates = await req.user.getTemplates()
-  res.render('templates', { templates })
+  res.json(templates)
 })
 
 router.get('/:uuid', ensureAuth, async (req, res, next) => {

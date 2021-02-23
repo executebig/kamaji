@@ -1,5 +1,8 @@
 const App = () => (
-  <p>Hello World!</p>
+  <div>
+    <p>Hello World!</p>
+    <a href="/auth/google">Login</a>
+  </div>
 )
 
 export default App

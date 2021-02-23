@@ -7,10 +7,6 @@ const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const session = require('express-session')
 
-const indexRouter = require('./routes/index')
-const templatesRouter = require('./routes/templates')
-const sendRouter = require('./routes/send')
-
 const authLib = require('./libs/auth')
 
 const app = express()
@@ -32,11 +28,13 @@ app.use(
 
 authLib(app)
 
-app.use(express.static(path.join(__dirname, '..', '..', 'client', 'build')))
+const BUILD_DIR = path.join(__dirname, '../../client/build')
 
-app.use('/', indexRouter)
-app.use('/api/templates', templatesRouter)
-app.use('/api/send', sendRouter)
+app.use(express.static(BUILD_DIR))
+app.use('/api', require('./routes/index'))
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(BUILD_DIR, 'index.html'))
+})
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -51,7 +49,7 @@ app.use((err, req, res, next) => {
 
   // render the error page
   res.status(err.status || 500)
-  res.render('error')
+  res.json(err)
 })
 
 module.exports = app

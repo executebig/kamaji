@@ -9,12 +9,16 @@ import {
 import 'normalize.css'
 
 import IndexPage from './pages/index'
+import ErrorPage from './pages/error'
+import TemplatePage from './pages/templates'
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Switch>
-        <Route component={IndexPage} />
+        <Route exact path='/' component={IndexPage} />
+        <Route exact path='/templates' component={TemplatePage} />
+        <Route component={ErrorPage} />
       </Switch>
     </Router>
   </React.StrictMode>,
