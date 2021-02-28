@@ -38,6 +38,8 @@ module.exports = (app) => {
   app.use(passport.initialize())
   app.use(passport.session())
 
+  app.get('/auth', (req, res) => res.redirect('/auth/google'))
+
   app.get(
     '/auth/google',
     passport.authenticate('google', {

@@ -1,0 +1,17 @@
+@import 'styles';
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+
+  gap: 12px;
+}
+
+label {
+  display: flex;
+}
+
+input {
+  flex: 1;
+}

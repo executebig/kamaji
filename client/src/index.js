@@ -11,6 +11,7 @@ import 'normalize.css'
 import IndexPage from './pages/index'
 import ErrorPage from './pages/error'
 import TemplatePage from './pages/templates'
+import SendPage from './pages/send'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -18,6 +19,7 @@ ReactDOM.render(
       <Switch>
         <Route exact path='/' component={IndexPage} />
         <Route exact path='/templates' component={TemplatePage} />
+        <Route exact path='/send' component={SendPage} />
         <Route component={ErrorPage} />
       </Switch>
     </Router>
