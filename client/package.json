@@ -16,7 +16,7 @@
     "react-hook-form": "6.15.4",
     "react-router-dom": "5.2.0",
     "react-scripts": "4.0.3",
-    "swr": "0.4.2",
+    "swr": "0.5.7",
     "web-vitals": "1.1.0",
     "xlsx": "0.16.9"
   },
