@@ -10851,10 +10851,10 @@ svgo@^1.0.0, svgo@^1.2.2:
     unquote "~1.1.1"
     util.promisify "~1.0.0"
 
-swr@0.4.2:
-  version "0.4.2"
-  resolved "https://registry.npmjs.org/swr/-/swr-0.4.2.tgz"
-  integrity sha512-SKGxcAfyijj/lE5ja5zVMDqJNudASH3WZPRUakDVOePTM18FnsXgugndjl9BSRwj+jokFCulMDe7F2pQL+VhEw==
+swr@0.5.7:
+  version "0.5.7"
+  resolved "https://registry.npmjs.org/swr/-/swr-0.5.7.tgz"
+  integrity sha512-Jh1Efgu8nWZV9rU4VLUMzBzcwaZgi4znqbVXvAtUy/0JzSiN6bNjLaJK8vhY/Rtp7a83dosz5YuehfBNwC/ZoQ==
   dependencies:
     dequal "2.0.2"
 
